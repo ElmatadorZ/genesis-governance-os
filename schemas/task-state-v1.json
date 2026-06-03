@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://genesis-os.dev/schemas/task-state-v1.json",
+  "title": "Genesis Task State (GTS-1)",
+  "type": "object",
+  "required": ["id", "status", "owner", "goal", "done_when", "attempts"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^TASK-", "description": "Stable unique id, never reused" },
+    "title": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "in_progress", "blocked", "review", "done", "failed", "archived"]
+    },
+    "owner": { "type": "string", "description": "Exactly one owner at any moment" },
+    "created_by": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "goal": { "type": "string" },
+    "done_when": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Explicit checkable completion criteria"
+    },
+    "inputs": { "type": "object" },
+    "outputs": { "type": "object" },
+    "attempts": {
+      "type": "array",
+      "description": "Append-only. Never edit or delete.",
+      "items": {
+        "type": "object",
+        "required": ["by", "at", "action", "result"],
+        "properties": {
+          "by": { "type": "string" },
+          "at": { "type": "string", "format": "date-time" },
+          "action": { "type": "string" },
+          "result": { "type": "string", "enum": ["pending", "pending_review", "rejected", "accepted", "failed"] },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["by", "choice", "because"],
+        "properties": {
+          "by": { "type": "string" },
+          "choice": { "type": "string" },
+          "because": { "type": "string" }
+        }
+      }
+    },
+    "handoff": {
+      "type": ["object", "null"],
+      "required": ["from", "to", "note"],
+      "properties": {
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "note": { "type": "string", "minLength": 1 }
+      }
+    },
+    "error": { "type": ["string", "null"] },
+    "human_gate": { "type": "boolean", "default": false },
+    "parent": { "type": ["string", "null"] },
+    "audit_ref": { "type": "string" }
+  }
+}
