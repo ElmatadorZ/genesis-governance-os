@@ -1,0 +1,12 @@
+[project]
+name = "genesis-gos"
+version = "2.0.0"
+description = "Reference implementation of Genesis Governance OS — an open standard for multi-agent systems"
+authors = [{ name = "Bunyawat Dechanon (ElmatadorZ)" }]
+license = { text = "Open Cognitive License v1.0" }
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/ElmatadorZ/genesis-governance-os"
