@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+title: Genesis Governance OS
+message: >-
+  If you use this standard, please cite it as below.
+type: software
+authors:
+  - family-names: Dechanon
+    given-names: Bunyawat
+    alias: ElmatadorZ
+repository-code: 'https://github.com/ElmatadorZ/genesis-governance-os'
+abstract: >-
+  An open standard for multi-agent systems that stay legible, safe, and
+  accountable — in any language, on any model. Comprises four specifications:
+  GTS-1 (task state), GPS-2 (permission), GOP-3 (orchestration), and GOS-0
+  (governance constitution).
+keywords:
+  - multi-agent-systems
+  - ai-governance
+  - ai-safety
+  - open-standard
+  - agent-orchestration
+license-url: 'https://github.com/ElmatadorZ/genesis-governance-os/blob/main/LICENSE.md'
+version: '2.0'

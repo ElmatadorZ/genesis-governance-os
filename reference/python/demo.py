@@ -2,7 +2,16 @@
 Runnable demo: the QUICKSTART 3-agent workflow, actually executing.
 Run:  python demo.py
 """
+import sys
+
 from genesis_gos import TaskState, Status, Grant, Orchestrator, Agent
+
+# Windows consoles default to cp1252 and cannot encode the status glyphs below.
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    OK_MARK = "✅"
+except Exception:  # pragma: no cover - depends on host console
+    OK_MARK = "[OK]"
 
 
 def research_act(task):
@@ -53,7 +62,7 @@ def main():
         print("  ", e)
 
     assert task.status == Status.DONE, "workflow should complete"
-    print("\n✅ workflow completed cleanly")
+    print(f"\n{OK_MARK} workflow completed cleanly")
 
 
 if __name__ == "__main__":

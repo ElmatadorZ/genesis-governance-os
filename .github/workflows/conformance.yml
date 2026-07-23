@@ -1,0 +1,98 @@
+name: Conformance
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    name: ${{ matrix.os }} · py${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # A standard must demonstrably hold on every major platform, not just
+        # the author's. Windows is included deliberately: console encoding has
+        # broken this suite before.
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.9", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Conformance suite (18 invariants, dependency-free)
+        working-directory: reference/python
+        run: python conformance_test.py
+
+      - name: Conformance suite under pytest
+        working-directory: reference/python
+        run: |
+          pip install --quiet pytest
+          python -m pytest -q conformance_test.py
+
+      - name: Runnable demo (3-agent workflow)
+        working-directory: reference/python
+        run: python demo.py
+
+  schema:
+    name: schemas validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install --quiet jsonschema
+
+      - name: Every schema is a valid JSON Schema
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          from jsonschema import Draft202012Validator
+          bad = []
+          for p in sorted(pathlib.Path('schemas').glob('*.json')):
+              try:
+                  schema = json.loads(p.read_text(encoding='utf-8'))
+                  Draft202012Validator.check_schema(schema)
+                  print(f"  OK  {p}")
+              except Exception as e:
+                  bad.append(f"{p}: {e}")
+          if bad:
+              print("INVALID:"); print("\n".join(bad)); sys.exit(1)
+          PY
+
+  hygiene:
+    name: repo hygiene
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: No extensionless or tree-glyph filenames
+        run: |
+          python - <<'PY'
+          import pathlib, sys
+          problems = []
+          allow = {'LICENSE', 'NOTICE', 'CODEOWNERS', 'Makefile', 'Dockerfile'}
+          skip = {'.git', '.pytest_cache', '.mypy_cache', '.ruff_cache',
+                  '__pycache__', '.venv', 'node_modules'}
+          for p in pathlib.Path('.').rglob('*'):
+              if skip & set(p.parts) or not p.is_file():
+                  continue
+              if any(c in p.name for c in '└├─│'):
+                  problems.append(f"tree glyph in name: {p}")
+              if not p.suffix and p.name not in allow and not p.name.startswith('.'):
+                  problems.append(f"missing extension: {p}")
+          if problems:
+              print("\n".join(f"  {x}" for x in problems)); sys.exit(1)
+          print("  OK  filenames clean")
+          PY

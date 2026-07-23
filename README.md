@@ -62,6 +62,18 @@ Machine-validatable schema: **[schemas/task-state-v1.json](schemas/task-state-v1
 
 ---
 
+## Claiming conformance
+
+**[spec/CONFORMANCE.md](spec/CONFORMANCE.md)** is the normative authority: RFC-2119 requirement
+language, stable requirement IDs (`GTS-1.3`, `GPS-2.5`, …), three conformance levels
+(**L1 Core** → **L2 Full** → **L3 Governed**), and an honest coverage matrix stating which
+requirements are machine-verified and which require attestation.
+
+The reference suite runs on Linux, macOS, and Windows across Python 3.9/3.11/3.12 in CI —
+every check asserts, so a violated invariant fails the build.
+
+---
+
 ## The whole thing on one page
 
 ```

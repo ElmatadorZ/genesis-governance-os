@@ -10,10 +10,28 @@ from genesis_gos import (
     Orchestrator, Agent, LoopGuard,
 )
 
+# Cross-platform output: Windows consoles default to cp1252 and cannot encode
+# U+2705/U+274C. Prefer UTF-8; fall back to ASCII markers if the console refuses.
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    PASS, FAIL = "✅", "❌"
+except Exception:  # pragma: no cover - depends on host console
+    PASS, FAIL = "[PASS]", "[FAIL]"
+
 results = []
+
+
 def check(name, cond):
-    results.append((name, bool(cond)))
-    print(f"  {'✅' if cond else '❌'} {name}")
+    """Record, report, and ENFORCE an invariant.
+
+    The assert is what makes `python -m pytest` meaningful: without it the
+    test functions would return normally even when an invariant is violated,
+    and a broken implementation would still report green.
+    """
+    ok = bool(cond)
+    results.append((name, ok))
+    print(f"  {PASS if ok else FAIL} {name}")
+    assert ok, f"INVARIANT VIOLATED: {name}"
 
 
 def test_gts1():
@@ -122,13 +140,22 @@ def test_gop3():
 
 
 def main():
-    test_gts1(); test_gps2(); test_gop3()
+    # Run every suite even if one violates, so the report is complete
+    # (check() asserts, which is what makes pytest meaningful; here we catch
+    # so a direct run still prints the full picture before exiting non-zero).
+    for suite in (test_gts1, test_gps2, test_gop3):
+        try:
+            suite()
+        except AssertionError as e:
+            print(f"  -> suite halted: {e}")
+
     passed = sum(1 for _, ok in results if ok)
     total = len(results)
     print(f"\n{'='*48}\nCONFORMANCE: {passed}/{total} passed")
     if passed != total:
-        print("FAILED:", [n for n, ok in results if not ok]); sys.exit(1)
-    print("✅ ALL INVARIANTS HOLD — GOS-2.0 conformant")
+        print("FAILED:", [n for n, ok in results if not ok])
+        sys.exit(1)
+    print(f"{PASS} ALL INVARIANTS HOLD — GOS-2.0 conformant")
 
 
 if __name__ == "__main__":
