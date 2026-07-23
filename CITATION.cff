@@ -19,5 +19,5 @@ keywords:
   - ai-safety
   - open-standard
   - agent-orchestration
-license-url: 'https://github.com/ElmatadorZ/genesis-governance-os/blob/main/LICENSE.md'
+license: Apache-2.0
 version: '2.0'

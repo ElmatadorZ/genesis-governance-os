@@ -119,4 +119,4 @@ and required for the "governmental-scale" profile.
 
 ---
 
-*GOS-0 · Genesis Governance OS v2.0 · Open Cognitive License v1.0 · Bunyawat Dechanon (ElmatadorZ)*
+*GOS-0 · Genesis Governance OS v2.0 · Apache-2.0 · Bunyawat Dechanon (ElmatadorZ)*

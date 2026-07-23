@@ -135,4 +135,4 @@ full accountability and orchestration.
 
 ---
 
-*GTS-1 · Genesis Governance OS · Open Cognitive License v1.0 · ElmatadorZ*
+*GTS-1 · Genesis Governance OS · Apache-2.0 · ElmatadorZ*

@@ -86,7 +86,7 @@ Requirement IDs are stable and MUST be cited when claiming or disputing conforma
 
 | ID | Requirement |
 |---|---|
-| **GOS-0.01** | No component **MUST** simultaneously legislate, execute, and judge (separation of powers). |
+| **GOS-0.01** | A component **MUST NOT** simultaneously legislate, execute, and judge (separation of powers). |
 | **GOS-0.02** | Every consequential action **MUST** be attributable to an accountable actor. |
 | **GOS-0.15** | Irreversible decisions **MUST** rest with a human. |
 | **GOS-0.16** | A blocked agent **MUST** report the block. It **MUST NOT** fake completion (honest failure). |
@@ -153,7 +153,7 @@ Recommended wording:
 
 An implementation that strips safety invariants (separation of powers, honest-failure,
 human-in-the-loop) **MUST NOT** claim conformance and **MUST** be renamed so as not to imply
-endorsement — see [LICENSE](../LICENSE.md) §3.
+endorsement — see [NOTICE](../NOTICE).
 
 ## 7. Versioning & stability
 

@@ -95,4 +95,4 @@ tight permission scope), and — when it gets big — the constitution layer (GO
 
 ---
 
-*Quickstart · Genesis Governance OS · Open Cognitive License v1.0*
+*Quickstart · Genesis Governance OS · Apache-2.0*

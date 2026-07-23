@@ -13,7 +13,7 @@ This is an open **standard**, not a product. Contributions that matter most:
 - The **spec** (`/spec`) is the source of truth. Code serves the spec, not the reverse.
 - Do not weaken the safety invariants: separation of powers, honest-failure,
   human-in-the-loop on irreversible actions, capability-as-constitutional-act.
-  A fork that removes these must be renamed (see LICENSE §3).
+  A fork that removes these must be renamed (see NOTICE).
 - Keep the floor layer (GTS-1/GPS-2/GOP-3) small. The value is that a solo builder
   can adopt it in an afternoon. Resist scope creep into the floor.
 - Examples are examples. Don't merge domain-specific agents into the core.

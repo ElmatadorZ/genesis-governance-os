@@ -56,4 +56,4 @@ resolved the source dispute in one message. **That is the system working.**
 
 ---
 
-*Reference example only. The standards are in `/spec`. Open Cognitive License v1.0.*
+*Reference example only. The standards are in `/spec`. Apache-2.0.*

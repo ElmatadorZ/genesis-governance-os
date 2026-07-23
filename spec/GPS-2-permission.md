@@ -128,4 +128,4 @@ and integration with the orchestrator (GOP-3) so ESCALATE pauses the task.
 
 ---
 
-*GPS-2 · Genesis Governance OS · Open Cognitive License v1.0 · ElmatadorZ*
+*GPS-2 · Genesis Governance OS · Apache-2.0 · ElmatadorZ*

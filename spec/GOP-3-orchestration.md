@@ -136,4 +136,4 @@ stands on.
 
 ---
 
-*GOP-3 · Genesis Governance OS · Open Cognitive License v1.0 · ElmatadorZ*
+*GOP-3 · Genesis Governance OS · Apache-2.0 · ElmatadorZ*

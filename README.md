@@ -7,7 +7,7 @@ in any language, on any model.**
 
 `GTS-1` Task State · `GPS-2` Permission · `GOP-3` Orchestration · `GOS-0` Constitution
 
-Open Cognitive License v1.0 · by Bunyawat Dechanon (ElmatadorZ)
+Apache-2.0 · by Bunyawat Dechanon (ElmatadorZ)
 
 </div>
 
@@ -121,14 +121,19 @@ for those running on Claude.
 This is an early open standard. Issues and conformant implementations in any
 language are welcome. Implementations that strip the safety invariants
 (separation of powers, honest-failure, human-in-the-loop) must be renamed and
-must not imply endorsement (see LICENSE §3).
+must not imply endorsement (see [NOTICE](NOTICE)).
 
 ---
 
 ## License
 
-**[Open Cognitive License v1.0](LICENSE.md)** — free to use, attribution required,
-2% gross-revenue royalty only above $10M USD/year.
+**[Apache License 2.0](LICENSE)** — free to use, modify, and redistribute, including
+commercially. Keep the license and [NOTICE](NOTICE), and state any changed files.
+
+The Apache License does not grant rights to the project's name (§6, Trademarks): a derivative
+that removes the safety invariants — separation of powers, honest-failure, human-in-the-loop —
+must be renamed and must not imply endorsement. Conformance claims are governed by
+[spec/CONFORMANCE.md](spec/CONFORMANCE.md).
 
 > Built on Genesis Governance OS by Bunyawat Dechanon (ElmatadorZ)
 
