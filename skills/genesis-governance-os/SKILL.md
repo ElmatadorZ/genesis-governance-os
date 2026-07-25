@@ -2,6 +2,20 @@
 name: genesis-governance-os
 description: "GENESIS GOVERNANCE OS v2.0 — an open standard for multi-agent systems that stay legible, safe, and accountable on any model or language. ALWAYS trigger for: multi-agent system design, agent orchestration, agent task state, agent permissions, tool permission, agent looping, agents duplicating work, who owns this task, orchestrator design, multi-agent company, AI org structure, separation of powers for agents, self-improving agent system, capability gap, agent stuck, governance framework, ออกแบบระบบ multi-agent, agent วนซ้ำ, ใครรับผิดชอบงาน, ระบบ AI หลายตัว, สภา AI, บริษัท AI. Provides four standards: GTS-1 Task State (where work is), GPS-2 Permission (what's allowed, prevented early), GOP-3 Orchestration (who's next, loop-bounded), GOS-0 Constitution (7 branches, separation of powers, self-improvement loop). Solo builders start with the three execution standards; scale with the constitution."
 license: "Apache-2.0"
+version: "2.0"
+author: "Bunyawat Dechanon (ElmatadorZ)"
+metadata:
+  category: "governance"
+  compatibility: "Any instruction-following model and any agent framework. This is a
+    standard, not a runtime — the four conformance suites (GTS-1, GPS-2, GOP-3, GOS-0)
+    define behaviour a build must satisfy, and the Python reference is stdlib-only."
+  requires_tools: false
+  produces: "Governance rules a multi-agent system conforms to: task-state ownership,
+    deny-by-default permissions checked early, loop-bounded orchestration, and a
+    separation-of-powers constitution."
+  not_for: "Dropping in unadapted. It defines what a governed system must do, not a
+    finished orchestrator; conform your build to it, or run the reference to see the
+    rules exercised."
 ---
 
 # Genesis Governance OS — Skill

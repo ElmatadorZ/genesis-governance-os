@@ -35,8 +35,8 @@ jobs:
       - name: Conformance suite under pytest
         working-directory: reference/python
         run: |
-          pip install --quiet pytest
-          python -m pytest -q conformance_test.py
+          pip install --quiet pytest pyyaml
+          python -m pytest -q
 
       - name: Runnable demo (3-agent workflow)
         working-directory: reference/python
